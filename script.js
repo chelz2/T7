@@ -34,10 +34,28 @@ const people = [
 ];
 
 const container = document.querySelector(".container");
-const img ocument.querySelector("img");
-const container = document.querySelector(".profile-info");
-const container = document.querySelector("#next");
+const img = document.querySelector("img");
+const profileInfo = document.querySelector(".profile-info");
+const nextBtn = document.querySelector("#next");
 
-img 
-profile
-nextButton
+function* createProfileIterator() {
+  let index = 0;
+  while (true) {
+    yield people[index++ % people.length];
+  }
+}
+
+const iterator = createProfileIterator();
+console.log(iterator);
+nextBtn.addEventListener("click", () => {
+  const person = iterator.next().value;
+  img.src = person.imageURL;
+  profileInfo.querySelector("h3").textContent = person.name;
+  profileInfo.querySelectorAll("p")[0].textContent = `${person.age}`;
+  profileInfo.querySelectorAll("p")[1].textContent = `From ${person.location} `;
+  profileInfo.querySelectorAll(
+    "p"
+  )[2].textContent = `Looking for ${person.looking}`;
+});
+
+nextBtn.click();
