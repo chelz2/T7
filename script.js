@@ -46,7 +46,7 @@ function* createProfileIterator() {
 }
 
 const iterator = createProfileIterator();
-console.log(iterator);
+
 nextBtn.addEventListener("click", () => {
   const person = iterator.next().value;
   img.src = person.imageURL;
